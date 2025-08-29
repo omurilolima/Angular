@@ -11,10 +11,24 @@ export class AppointmentListComponent {
   newAppointmentTitle : string = '';
   newAppointmentDate : Date = new Date();
 
-  appointments: Appointment[] = []
+  appointments: Appointment[] = []  // Initialize an empty array to hold appointments
 
   addAppointment() {
-    alert(this.newAppointmentTitle + " " + this.newAppointmentDate);
+    if (this.newAppointmentTitle.trim().length && this.newAppointmentDate) {  // Check if title and date are valid
+      // Create a new appointment object
+      let newAppointment : Appointment = {
+        id: Date.now(),
+        title: this.newAppointmentTitle,
+        date: this.newAppointmentDate
+      };
+
+      // Add the new appointment to the list
+      this.appointments.push(newAppointment);
+      
+      // Clear the input fields
+      this.newAppointmentTitle = '';
+      this.newAppointmentDate = new Date(); 
   }
 
+}
 }
