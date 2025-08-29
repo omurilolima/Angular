@@ -28,11 +28,14 @@ export class AppointmentListComponent {
       // Clear the input fields
       this.newAppointmentTitle = '';
       this.newAppointmentDate = new Date(); 
+
+      localStorage.setItem('appointments', JSON.stringify(this.appointments))
     }
   }
 
   deleteAppointment(index: number){
     this.appointments.splice(index, 1)
+    localStorage.setItem('appointments', JSON.stringify(this.appointments))
   }
 
 }
