@@ -1,11 +1,30 @@
-<div>
-    <input [(ngModel)]="newBookTitle" placeholder="Enter book title" />
-    <input [(ngModel)]="newBookAuthor" placeholder="Enter book author" />
-    <button (click)="addBook()">Add Book</button>
-</div>
+<div class="container mt-4">
 
-<ul>
-    <li *ngFor="let book of books; index as i">
-        {{ i + 1 }}. "{{ book.title }}" by {{ book.author }}
-    </li>
-</ul>
+    <h1>Book Management</h1>
+    <div class="card mt-3">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mt-4">Add new book</h2>
+            </div>
+        </div>
+        <div class="row m-3 g-2">
+            <div class="col-md-6">
+                <input class="form-control" [(ngModel)]="newBookTitle" placeholder="Enter book title" />
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="newBookAuthor" placeholder="Enter book author" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" (click)="addBook()">Add Book</button>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="text-center mt-5">Book List</h2>
+    <ul class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let book of books; index as i">
+            {{ i+1 }}. "{{ book.title }}" by {{ book.author }}
+            <button class="btn btn-danger" (click)="deleteBook(i)">Delete</button>
+        </li>
+    </ul>
+</div>

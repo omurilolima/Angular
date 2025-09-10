@@ -6,11 +6,11 @@ import { Book } from '../models/book.models';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
 
   newBookTitle: string = '';
   newBookAuthor: string = '';
-  books: { title: string; author: string }[] = [];
+  books: Book[] = [];
 
   ngOnInit(): void {
     // Retrieve saved books from local storage on component initialization
@@ -19,10 +19,10 @@ export class BookComponent {
   }
 
   addBook(): void {
-    if (this.newBookTitle.trim() && this.newBookAuthor.trim()) {
+    if (this.newBookTitle.trim().length && this.newBookAuthor.trim().length) {
       // Add the new book to the list
       let newBook: Book = {
-        id: this.books.length + 1,
+        id: Date.now(), // Unique ID based on timestamp
         title: this.newBookTitle,
         author: this.newBookAuthor
       };
@@ -38,6 +38,7 @@ export class BookComponent {
       }
   }
   deleteBook(index: number): void {
+    // Remove the book at the specified index
     this.books.splice(index, 1);
     // Update local storage after deletion
     localStorage.setItem('books', JSON.stringify(this.books))
